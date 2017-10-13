@@ -3,6 +3,7 @@
 Lilia is a maid. She is dilligent and work quickly.
 In other words, Lilia is a containerized media file server with Google Cloud Storage backend 
 based on Express.js on Node.js and require MongoDB database for storing file meta data. Lilia will return file URL and any other info if requested.
+Lilia is supposed to be used as micro service as it (currently) has no authentication whatsoever.
 
 ### Usage
 Just run `docker run -p 9000:9000 -v /host/dir:/configuration --name lilia didasy/lilia` and 
