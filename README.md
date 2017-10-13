@@ -105,7 +105,7 @@ Returns:
 }
 ```
 
-#### /file/get GET
+#### /file/get POST
 
 Request: 
 
@@ -118,7 +118,7 @@ Request:
 }
 ```
 
-#### /file/search GET
+#### /file/search POST
 
 Request:
 

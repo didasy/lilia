@@ -1,6 +1,6 @@
 {
     "name": "lilia",
-    "version": "0.0.1",
+    "version": "0.0.1-alpha",
     "description": "Lilia is a maid.",
     "main": "app.js",
     "scripts": {

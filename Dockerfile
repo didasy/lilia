@@ -1,5 +1,5 @@
 # Tags: latest, 0.1
-# Buid with: docker build --compress --tag didasy/lilia:0.1 --tag didasy/lilia:latest .
+# Buid with: docker build --compress --tag didasy/lilia:0.0.1-alpha --tag didasy/lilia:latest .
 # Run with: docker run -p 9000:9000 -v /host/dir:/configuration --name lilia didasy/lilia
 
 FROM mhart/alpine-node:8
