@@ -29,5 +29,9 @@
         "read-chunk": "^2.1.0",
         "toml": "^2.3.3",
         "ulid": "^1.0.0"
+    },
+    "repository" : {
+        "type" : "git",
+        "url" : "https://github.com/npm/npm.git"
     }
 }
