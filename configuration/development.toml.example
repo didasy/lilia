@@ -1,0 +1,20 @@
+[app]
+port= 9000
+timeout= "1s"
+max_file_size= 10485760 # 10MB in bytes
+version= "0.1"
+
+[database]
+connection_string= "localhost:27017"
+
+    [database.connection_options]
+    j= true
+    w= "majority"
+
+[gcs]
+project_id= ""
+key_filename= ""
+email= ""
+scopes= [""]
+bucket= ""
+public= true

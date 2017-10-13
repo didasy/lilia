@@ -1,0 +1,33 @@
+{
+    "name": "lilia",
+    "version": "0.0.1",
+    "description": "Lilia is a maid.",
+    "main": "app.js",
+    "scripts": {
+        "start":
+            "NODE_ENV='production' CONFIG_PATH='/configuration' node app.js",
+        "dev":
+            "NODE_ENV='development' CONFIG_PATH='./configuration' node app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": ["file", "server", "upload", "gcs"],
+    "author": "Andida Syahendar <dida@worksinmagic.com>",
+    "license": "ISC",
+    "dependencies": {
+        "@google-cloud/storage": "^1.4.0",
+        "axios": "^0.16.2",
+        "body-parser": "^1.18.2",
+        "connect-multiparty": "^2.0.0",
+        "connect-timeout": "^1.9.0",
+        "express": "^4.16.2",
+        "file-type": "^7.0.1",
+        "http-status-codes": "^1.3.0",
+        "is-url": "^1.2.2",
+        "md5": "^2.2.1",
+        "mongoist": "^1.4.0",
+        "morgan": "^1.9.0",
+        "read-chunk": "^2.1.0",
+        "toml": "^2.3.3",
+        "ulid": "^1.0.0"
+    }
+}

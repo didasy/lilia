@@ -1,0 +1,6 @@
+node_modules
+package-lock.json
+configuration/*.toml
+tmp
+Dockerfile
+configuration/*.json
