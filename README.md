@@ -11,6 +11,12 @@ communicate through HTTP on that port. Lilia expose and listen on port 9000 by d
 If you use `api_token` in configuration file, make sure to send it as header `api_token` on request
 or it will return 401 error.
 
+### TODOs
+
+- Volume for key and cert files
+- Volume for custom upload page
+- Volume for log file
+
 ### Routes
 
 #### / GET
@@ -27,7 +33,7 @@ Returns:
 
 #### /file/upload GET
 
-Will return an ultra simple html page to upload a media file. **Not implemented yet**.
+Will return an ultra simple html page to upload a media file.
 
 #### /file/download POST
 
