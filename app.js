@@ -1,6 +1,5 @@
 const configuration = require("./configuration");
 const routes = require("./routes");
-const middleware = require("./middleware");
 
 const fs = require("fs");
 const https = require("https");
@@ -9,7 +8,6 @@ const express = require("express");
 
 const app = express();
 app.use(morgan("combined"));
-app.use(middleware.apiToken);
 app.use(routes.files);
 
 if (configuration.app.secure) {

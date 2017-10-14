@@ -1,13 +1,13 @@
 {
     "name": "lilia",
-    "version": "0.0.2-alpha",
+    "version": "v0.0.3-alpha",
     "description": "Lilia is a maid.",
     "main": "app.js",
     "scripts": {
         "start":
-            "NODE_ENV='production' CONFIG_PATH='/configuration' VERSION='0.0.2-alpha' node app.js",
+            "NODE_ENV='production' CONFIG_PATH='/configuration' VERSION='v0.0.3-alpha' node app.js",
         "dev":
-            "NODE_ENV='development' CONFIG_PATH='./configuration' VERSION='0.0.2-alpha' node app.js",
+            "NODE_ENV='development' CONFIG_PATH='./configuration' VERSION='v0.0.3-alpha' node app.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": ["file", "server", "upload", "gcs", "lilia"],

@@ -5,13 +5,15 @@ timeout= "30s"
 api_token= "somethingsomethinghardtounderstand"
 
     [app.security]
-    key= "/path/to/key"
-    cert= "/path/to/cert.pem"
+    key= "/configuration/key.pem" # Rename your key file to key.pem in your configuration directory
+    cert= "/configuration/cert.pem" # Rename your certificate file to cert.pem in your configuration directory
 
     [app.upload]
     timeout= "300s"
     max_file_size= 10485760 # 10MB in bytes
-    dirname= "/tmp"
+    dirname= "/tmp" # Don't change this
+    base_url= "http://localhost:9000"
+    page_html= "view/index.html" # Don't change this
 
 [database]
 connection_string= "mongodb://localhost:27017/file"
@@ -25,4 +27,4 @@ bucket= "bucket_name"
 
     [gcs.options]
         project_id= "project-123"
-        key_filename= "/path/to/key.json"
+        key_filename= "/configuration/key.json" # Don't change this, rename your key file to key.json in configuration directory

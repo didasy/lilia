@@ -1,10 +1,12 @@
 const MaxFieldsSize = 10240; // 10kB
-const MaxFields = 2;
+const MaxFields = 5;
 
 const configuration = require("../configuration");
 const form = require("../form");
 const FileModel = require("../model/file");
+const middleware = require("../middleware");
 
+const url = require("url");
 const path = require("path");
 const fs = require("fs");
 const { promisify } = require("util");
@@ -53,6 +55,7 @@ async function getMain(req, res) {
 
 router.post(
     "/file/download",
+    middleware.apiToken,
     timeout(configuration.app.upload.timeout),
     bodyparser.json(),
     (req, res) => {
@@ -195,8 +198,24 @@ function getFilenameFromUrl(file_url) {
     return arr[arr.length - 1];
 }
 
+const indexPage = fs.readFileSync(configuration.app.upload.page_html, "utf8");
+const uploadUrl = url.resolve(
+    configuration.app.upload.base_url,
+    "/file/upload"
+);
+router.get("/file/upload", timeout(configuration.app.timeout), (req, res) => {
+    let requestID = ulid();
+    let page = indexPage;
+    page = page.replace("${request_id}", requestID);
+    page = page.replace("${upload_url}", uploadUrl);
+    page = page.replace("${api_token}", configuration.app.api_token);
+
+    res.set({ "Content-Type": "text/html" }).send(page);
+});
+
 router.post(
     "/file/upload",
+    middleware.apiToken,
     timeout(configuration.app.upload.timeout),
     multipart({
         maxFieldsSize: MaxFieldsSize,
@@ -356,6 +375,7 @@ async function handleUpload(req, res, bucket, blob, file, fileData) {
 
 router.post(
     "/file/delete",
+    middleware.apiToken,
     timeout(configuration.app.timeout),
     bodyparser.json(),
     (req, res) => {
@@ -402,6 +422,7 @@ async function deleteFile(req, res) {
 
 router.post(
     "/file/get",
+    middleware.apiToken,
     timeout(configuration.app.timeout),
     bodyparser.json(),
     (req, res) => {
@@ -444,6 +465,7 @@ async function getFile(req, res) {
 
 router.post(
     "/file/search",
+    middleware.apiToken,
     timeout(configuration.app.timeout),
     bodyparser.json(),
     (req, res) => {

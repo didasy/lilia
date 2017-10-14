@@ -1,0 +1,53 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Lilia Upload Page</title>
+    <meta name="description" content="Lilia Upload Page">
+    <meta name="author" content="Andida Syahendar">
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <form action="${upload_url}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="api_token" value="${api_token}">
+        <input type="hidden" name="request_id" value="${request_id}">
+        <input type="file" name="media">
+        <button type="button" id="upload">Upload</button>
+    </form>
+</body>
+<script>
+    // Upload file using AJAX because we need api_token as header
+    // after finish uploading, refresh the page
+    var uploadUrl = document.querySelector("form").getAttribute("action");
+    var apiToken = document.querySelector('input[name="api_token"]').getAttribute("value");
+    var button = document.querySelector('#upload');
+    button.addEventListener("click", function (event) {
+        var form = document.querySelector("form");
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", function (event) {
+            if (event.target.status >= 400) {
+                var response = JSON.parse(event.target.response);
+                window.alert("Failed to upload image: " + response.error);
+                return;
+            }
+            window.location.reload(true);
+        });
+        xhr.addEventListener("error", function (event) {
+            console.log(event.target);
+        });
+        xhr.open("POST", uploadUrl, true);
+        xhr.setRequestHeader("api_token", apiToken);
+        xhr.send(formData);
+    });
+</script>
+
+</html>
