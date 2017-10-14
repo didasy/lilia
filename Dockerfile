@@ -8,6 +8,9 @@ FROM mhart/alpine-node:8
 WORKDIR /
 
 RUN mkdir /configuration \
+    && mkdir /security \
+    && mkdir /log \
+    && mkdir /view \
     && apk add --no-cache wget \
     && apk add --no-cache tar \
     && apk add --no-cache sed \
@@ -18,7 +21,7 @@ RUN mkdir /configuration \
     && cd /app \
     && npm install
 
-VOLUME ["/configuration"]
+VOLUME ["/configuration", "/view", "/log", "/security"]
 
 EXPOSE 9000
 

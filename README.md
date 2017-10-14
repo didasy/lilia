@@ -13,9 +13,11 @@ or it will return 401 error.
 
 ### TODOs
 
+- Adding tests
 - Volume for key and cert files
 - Volume for custom upload page
 - Volume for log file
+- Prettier default upload page
 
 ### Routes
 
