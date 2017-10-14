@@ -1,3 +1,4 @@
+const Version = process.env.VERSION;
 const Env = process.env.NODE_ENV;
 const DefaultConfPath = process.env.CONFIG_PATH || "/configuration";
 const Development = "development.toml";
@@ -31,5 +32,7 @@ try {
     console.error(err.stack);
     process.exit(1);
 }
+
+conf.app.version = Version; // Version
 
 module.exports = conf;
