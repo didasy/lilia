@@ -1,6 +1,10 @@
 const Version = process.env.VERSION;
 const Env = process.env.NODE_ENV;
 const DefaultConfPath = process.env.CONFIG_PATH || "/configuration";
+const DefaultViewFilePath = "view/index.html";
+const DefaultLogPath = "/log";
+const DefaultTmpPath = "/tmp";
+const DefaultPort = 9000;
 const Development = "development.toml";
 const Staging = "staging.toml";
 const Production = "production.toml";
@@ -34,5 +38,19 @@ try {
 }
 
 conf.app.version = Version; // Version
+if (typeof conf.app.upload.page_html != "string") {
+    conf.app.upload.page_html = DefaultViewFilePath; // View HTML file
+}
+if (typeof conf.app.log_path != "string") {
+    conf.app.log_path = DefaultLogPath;
+}
+if (typeof conf.app.upload.dirname != "string") {
+    conf.app.upload.dirname = DefaultTmpPath;
+}
+if (typeof conf.app.port != "number") {
+    if (conf.app.port < 1 || conf.app.port > 65535) {
+        conf.app.port = DefaultPort;
+    }
+}
 
 module.exports = conf;

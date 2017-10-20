@@ -1,3 +1,5 @@
+const isUrl = require("is-url");
+
 const ValidSort = [
     "created_at",
     "file_size",
@@ -24,6 +26,8 @@ const validate = data => {
     // file_type
     // file_size_from
     // file_size_to
+    // remote_file_name
+    // original_file_url
     if (typeof data.request_id != "string") {
         return null;
     }
@@ -212,6 +216,18 @@ const validate = data => {
 
     delete data.file_size_from;
     delete data.file_size_to;
+
+    if (typeof data.remote_file_name == "string") {
+        if (data.remote_file_name.length < 1) {
+            delete data.remote_file_name;
+        }
+    }
+
+    if (typeof data.original_file_url == "string") {
+        if (!isUrl(data.original_file_url)) {
+            delete data.original_file_url;
+        }
+    }
 
     data.deleted_at = null;
 

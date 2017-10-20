@@ -14,10 +14,13 @@ or it will return 401 error.
 ### TODOs
 
 - Adding tests
-- Volume for key and cert files
-- Volume for custom upload page
-- Volume for log file
+- Adding log to file, rotated
 - Prettier default upload page
+- Better errors handling
+- Make some configs switchable
+- MySQL database support?
+- AWS S3 storage support?
+- Local Disk support?
 
 ### Routes
 
@@ -29,7 +32,7 @@ Returns:
 ```
 {
 	service: "Lilia",
-	version: "v0.0.3-alpha"
+	version: "v0.0.4-alpha"
 }
 ```
 
@@ -116,6 +119,31 @@ Returns:
 }
 ```
 
+#### /file/delete/permanent POST
+
+Delete the file from GCS but keep the record intact.
+Only set the record as deleted.
+
+Request:
+
+```
+{
+	request_id: String,
+	file_md5: String, // optional
+	file_url: String // optional
+}
+```
+
+Returns:
+
+```
+{
+	deleted_at: Date,
+	deletion_request_id: String
+}
+```
+
+
 #### /file/get POST
 
 Request: 
@@ -171,3 +199,20 @@ Response:
 	...
 ]
 ```
+
+#### Guide To Custom Upload Page
+
+You must have these parameter strings in your HTML page:
+
+- `${request_id}`
+- `${upload_url}`
+- `${api_token}`
+
+From your HTML page, you have to use XHR to send the data as you need to set `api_token` header for authentication.
+If you need external JavaScript or CSS files, you have to provide your own URL as Lilia doesn't have the ability yet
+to serve static files.
+
+#### Tests [Development Only]
+
+To test, you must have `configuration` directory in the root directory of this repository, 
+then you place `development.toml` in it with valid GCS credentials and MongoDB connection string.

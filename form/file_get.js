@@ -25,7 +25,7 @@ const validate = data => {
         if (typeof data.file_url != "string") {
             return null;
         }
-        if (isUrl(data.file_url)) {
+        if (!isUrl(data.file_url)) {
             return null;
         }
     }

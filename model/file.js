@@ -1,3 +1,5 @@
+const isUrl = require("is-url");
+
 /**
     request_id: "" // Preferably ULID and must be unique
     file_name: "" // Max 256 characters
@@ -23,6 +25,8 @@ class FileModel {
         this.created_at = data.created_at || new Date();
         this.deleted_at = data.deleted_at || null;
         this.deletion_request_id = data.deletion_request_id || null;
+        this.remote_file_name = data.remote_file_name || null;
+        this.original_file_url = data.original_file_url || null;
     }
 
     getAll() {
@@ -38,7 +42,9 @@ class FileModel {
             file_type: data.file_type,
             created_at: data.created_at,
             deleted_at: data.deleted_at,
-            deletion_request_id: data.deletion_request_id
+            deletion_request_id: data.deletion_request_id,
+            remote_file_name: data.remote_file_name,
+            original_file_url: data.original_file_url
         };
     }
 
@@ -97,6 +103,18 @@ class FileModel {
         if (data.deletion_request_id != null) {
             if (typeof data.deletion_request_id != "string") {
                 err.push("file_deletion_request_id must be string");
+            }
+        }
+
+        if (typeof data.remote_file_name == "string") {
+            if (data.remote_file_name.length < 1) {
+                err.push("remote_file_name cannot be less than 1 character");
+            }
+        }
+
+        if (typeof data.original_file_url == "string") {
+            if (!isUrl(data.original_file_url)) {
+                err.push("original_file_url must be a correct url");
             }
         }
 

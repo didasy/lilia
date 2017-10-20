@@ -1,14 +1,15 @@
 {
     "name": "lilia",
-    "version": "v0.0.3-alpha",
+    "version": "v0.0.4-alpha",
     "description": "Lilia is a maid.",
     "main": "app.js",
     "scripts": {
         "start":
-            "NODE_ENV='production' CONFIG_PATH='/configuration' VERSION='v0.0.3-alpha' node app.js",
+            "NODE_ENV='production' CONFIG_PATH='/configuration' VERSION='v0.0.4-alpha' node app.js",
         "dev":
-            "NODE_ENV='development' CONFIG_PATH='./configuration' VERSION='v0.0.3-alpha' node app.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+            "NODE_ENV='development' CONFIG_PATH='./configuration' VERSION='v0.0.4-alpha' node app.js",
+        "test":
+            "NODE_ENV='development' CONFIG_PATH='./configuration' VERSION='v0.0.4-alpha' ./node_modules/mocha/bin/mocha --exit --timeout 30000"
     },
     "keywords": ["file", "server", "upload", "gcs", "lilia"],
     "author": "Andida Syahendar <dida@worksinmagic.com>",
@@ -33,5 +34,9 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/JesusIslam/lilia.git"
+    },
+    "devDependencies": {
+        "chakram": "^1.5.0",
+        "mocha": "^4.0.1"
     }
 }
