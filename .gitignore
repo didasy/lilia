@@ -4,3 +4,4 @@ configuration/*.toml
 tmp
 Dockerfile
 configuration/*.json
+security/*

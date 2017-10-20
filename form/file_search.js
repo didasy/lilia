@@ -9,8 +9,6 @@ const ValidSort = [
     "file_name"
 ];
 
-const isUrl = require("is-url");
-
 const validate = data => {
     // request_id
     // page
